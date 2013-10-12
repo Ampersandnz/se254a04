@@ -16,6 +16,7 @@ public class Reflection {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
 		try { 
 			String input = readClassName();
 			

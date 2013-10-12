@@ -1,0 +1,23 @@
+<%@ jet package="a04" class="InterfaceImplementer" imports="java.lang.reflect.*" %>
+<%Class<?> c = (Class <?>) argument; %>
+class <%=c.getSimpleName()%>Implementation implements <%=c.getName()%> {
+
+<%for(Method m : c.getMethods()) { %>
+<%String toReturn = m.getReturnType().getSimpleName();%>
+	public <%=toReturn%> <%=m.getName()%> (
+<%Class<?>[] args = m.getParameterTypes(); %>
+<%for(int i = 0; i < args.length; i++) { %><%=args[i].getSimpleName()%> <%if(i == args.length - 1) { %>p<%=i%>
+<%} else { %>p<%=i%>, <%}%>
+<%}%>) {
+<%if (!toReturn.equals("void")) {%> 
+<%if (toReturn.equals("int") || toReturn.equals("double")) {%> 
+<%="		return 0;"%>
+<%} else if (toReturn.equals("Boolean")) {%> 
+<%="		return false;"%>
+<%} else {%> 
+<%="		return null;"%>
+<%}}%>
+	}
+	
+<%}%>
+}
